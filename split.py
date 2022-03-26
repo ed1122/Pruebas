@@ -2,6 +2,7 @@
 
 
 from gettext import find
+from pickletools import string1
 
 
 def misplit(strng):
@@ -14,24 +15,26 @@ def misplit(strng):
         if strng.isspace():
             return salida
         for l in range(len(strng)):
+            
             if strng[l] != " " :
                 palabra += strng[l]
-                            
-            
-            elif  strng[l] == " " :
+                #print(l,len(strng)-1)
+                if l == (len(strng)-1):
+                    salida.append(palabra)
+                if palabra =='':
+                     continue
+            elif strng[l] == " " :
                 if palabra =='':
                      continue
                 else:
                     salida.append(palabra)
-                
-            elif strng[l] == "":
-                if palabra ==' ':
-                     continue
-                else:
-                    salida.append(palabra)
+                    palabra = ""
+            
                     
             else:
+                salida.append(palabra)
                 palabra = ""
+        
         
     except AssertionError:
         print("ingrese unicamente letras")
@@ -45,9 +48,9 @@ def misplit(strng):
 
 
 #
-print(misplit("Ser ola q1"))
+print(misplit("Ser ola "))
 print(misplit("Ser o no ser, esa es la pregunta"))
 print(misplit("Ser o no ser,esa es la pregunta"))
 print(misplit("   "))
 print(misplit(" abc "))
-print(misplit(1))
+print(misplit(""))
